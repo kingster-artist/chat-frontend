@@ -3,7 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {OverviewComponent} from "./components/overview/overview.component";
 
 const routes: Routes = [
-  {component: OverviewComponent, path: 'overview'}
+  {path: '', component: OverviewComponent},
+  {path: 'overview', component: OverviewComponent}
 ];
 
 @NgModule({
