@@ -1,0 +1,24 @@
+<h1>Nachrichtenübersicht</h1>
+
+<div>
+  Anzahl aller Nachrichten: <strong>{{messages.length}}</strong>
+</div>
+
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th>Datum/Uhrzeit</th>
+      <th>Benutzername</th>
+      <th>Nachrichtentext</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let message of messages">
+      <td>{{message.when}}</td>
+      <td>{{message.username}}</td>
+      <td>{{message.text}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
