@@ -7,20 +7,25 @@ import {ChatMessage} from "../entities/chat-message";
 })
 export class MessageService {
 
+  /**
+   * creates observable which notifies about new chat message
+   */
   public createEventSourceForChatMessages() {
-    return this.createGenericEventSource<ChatMessage>('http://localhost:8080/api/v1/chat-messages/stream-reactive', true);
+    return this.createGenericEventSource<ChatMessage>('http://localhost:8080/api/v1/chat-messages/stream-reactive', 'chat-message-event', true);
   }
 
-  public createEventSourceForTestObjects(): Observable<ChatMessage> {
-    return this.createGenericEventSource<ChatMessage>('http://localhost:8080/api/v1/testobjects/stream-reactive', false);
-  }
-
-  private createGenericEventSource<Type>(fullURI: string, parseAsJSON: boolean): Observable<Type> {
+  /**
+   * internal helper for creating observables from event source
+   * @param fullURI
+   * @param parseAsJSON
+   * @private
+   */
+  private createGenericEventSource<Type>(fullURI: string, eventNameFromBackend: string, parseAsJSON: boolean): Observable<Type> {
 
     //Natives Objekt/Klasse vom Browser, nicht von Angular!
     return new Observable(o => {
       const eventSource = new EventSource(fullURI);
-      eventSource.addEventListener('chat-message-event', (event) => {
+      eventSource.addEventListener(eventNameFromBackend, (event) => {
         let entity = event.data;
         if (parseAsJSON) {
           entity = JSON.parse(entity);

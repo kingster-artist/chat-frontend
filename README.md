@@ -4,7 +4,7 @@
 * Demoprogramm für den Umgang mit ServerSentEvents (SSE) in angular
 
 ## Bausteinsicht
-![](./bausteinsicht-chat-frontend.png)
+![](./bausteinsicht.png)
 
 ## Kurzerklärung
 * Genutzt wird die Browser-API rund um `EventSource`
@@ -16,3 +16,6 @@
 ## Lokales Ausführen
 * `ng serve`
 * Im Browser http://localhost:4200
+
+## LiveStream in Chrome verfolgen
+![](./stream.png)

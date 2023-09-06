@@ -15,10 +15,14 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    //Observable holen
     const messageObserver = this.messageService.createEventSourceForChatMessages();
+
+    //Neue Nachricht in die Übersicht aufnehmen (ganz oben, aber nur die neusten Nachrichten anzeigen)
     messageObserver.subscribe(message => {
       this.messages.unshift(message);
-      this.messages = this.messages.slice(0, 20);
+      this.messages = this.messages.slice(0, 30);
     });
   }
 
